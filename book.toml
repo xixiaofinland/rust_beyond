@@ -5,5 +5,8 @@ multilingual = false
 src = "src"
 title = "Rust & Beyond: A Practical Exploration"
 
+[output.html]
+git-repository-url = "https://github.com/xixiaofinland/rust_beyond"
+
 [output.html.playground]
 editable = true
