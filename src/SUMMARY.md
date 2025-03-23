@@ -1,3 +1,4 @@
 # Summary
 
-- [Introduction](intro/intro.md)
+- [Introduction](intro.md)
+- [Trait](trait.md)
