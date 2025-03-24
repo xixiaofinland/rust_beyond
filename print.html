@@ -1,0 +1,390 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rust &amp; Beyond: A Practical Exploration</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="ferris.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust &amp; Beyond: A Practical Exploration</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/xixiaofinland/rust_beyond" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Hi there, I'm <a href="http://xixiao.info">Xi Xiao</a>. This is my journey learning
+<a href="https://www.rust-lang.org/">Rust</a>.</p>
+<p>I created this book for three reasons.</p>
+<p>First, I want to become a better writer. Books, like <a href="https://www.amazon.com/Flowers-Algernon-Daniel-Keyes/dp/015603008X">Flowers for Algernon</a>
+and <a href="https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592">The Phoenix Project</a> amazed me. They explain complex ideas through
+simple words that still hit hard. They prove we don't need fancy language to
+convey thoughts.</p>
+<p>This skill seems magical to me! We often hear that things must be complex to be
+powerful. But these books are both simple AND powerful. I'm writing this book to
+practice this rare combination.</p>
+<p>Second, I love Rust. The language gives you modern features like type inference
+and safe concurrency that make coding pleasant. But it also offers the low-level
+control needed for system programming. Powerful yet approachable - just like the
+writing style I admire.</p>
+<p>Third, Rust isn't like other languages I've learned. It's complex enough to be
+worth breaking down into bite-sized pieces. By sharing my journey, I hope to
+make it more accessible for you too.</p>
+<h2 id="how-to-read"><a class="header" href="#how-to-read">How to read</a></h2>
+<p>I've organized related concpets together, but I'm not your dad - feel free to
+jump around and focus on whatever interests you most.</p>
+<p>I love reading with a dark color theme. You can change themes by clicking the
+paint brush icon (<i class="fa fa-paint-brush"></i>) in the top-left menu bar.</p>
+<p>Need to find something specific? Press the search icon (<i class="fa
+fa-search"></i>) or hit the <code>S</code> key on the keyboard to open an input box. As you
+type, matching content appears instantly.</p>
+<h2 id="code-blocks"><a class="header" href="#code-blocks">Code blocks</a></h2>
+<p>Code blocks may contain icons for interacting purpose:</p>
+<div class="table-wrapper"><table><thead><tr><th>Icon</th><th>Description</th></tr></thead><tbody>
+<tr><td><i class="fa fa-copy"></i></td><td>Copy the code</td></tr>
+<tr><td><i class="fa fa-play"></i></td><td>Execute and display the output</td></tr>
+<tr><td><i class="fa fa-eye"></i></td><td>Toggle visibility of hidden lines</td></tr>
+<tr><td><i class="fa fa-history"></i></td><td>For editable code blocks, this undos changes you have made</td></tr>
+</tbody></table>
+</div><br/>
+<br/>
+Here are examples.
+<ol>
+<li>A block that you can copy the code, or execute and see the output:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    println!("Hello, I'm the non-editable code block!");
+}</code></pre></pre>
+<ol start="2">
+<li>A code block that you can also edit and undo:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust  editable">fn main() {
+    println!("Click on me and edit!");
+}</code></pre></pre>
+<ol start="3">
+<li>A code block with a hidden line:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    println!("I have a hidden line, find it out!");
+<span class="boring">    // a hidden comment line here
+</span>}</code></pre></pre>
+<br/>
+<p><span id="ferris"></span></p>
+<p>In the sample code, Ferris will also help you distinguish code with different
+context:</p>
+<div class="table-wrapper"><table><thead><tr><th>Ferris</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><img src="img/ferris/does_not_compile.svg" class="ferris-explain" alt="Ferris with a question mark"/></td><td>This code does not compile!</td></tr>
+<tr><td><img src="img/ferris/panics.svg" class="ferris-explain" alt="Ferris throwing up their hands"/></td><td>This code panics!</td></tr>
+<tr><td><img src="img/ferris/not_desired_behavior.svg" class="ferris-explain" alt="Ferris with one claw up, shrugging"/></td><td>This code does not produce the desired behavior.</td></tr>
+</tbody></table>
+</div>
+<p>In most situations, we’ll lead you to the correct version of any code that
+doesn’t compile.</p>
+<h2 id="source-code"><a class="header" href="#source-code">Source Code</a></h2>
+<p>The source files from which this book is generated can be found on
+<a href="https://github.com/xixiaofinland/rust_beyond">GitHub</a>.</p>
+<p>That said, let's get on with it!</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
+<p>Types in Rust are powerful and versatile. Traits define shared behavior that
+multiple types can implement.</p>
+<h3 id="default-implementations"><a class="header" href="#default-implementations">Default implementations</a></h3>
+<p>Traits in Rust are similar to interfaces in other languages but can also provide
+default implementations for methods.</p>
+<p>Typically, an interface defines method signatures without any implementation. In
+Rust, however, you can supply default method implementations directly within a
+trait.</p>
+<blockquote>
+<p>Hover over the code below and click " <i class="fa fa-play"></i> " to execute
+and see the result.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust">trait Greet {
+    fn greet(&amp;self) { // Default implementation
+        println!("Hello from the default greeting!");
+    }
+}
+
+struct Person;
+
+impl Greet for Person {} // Uses the default implementation
+
+fn main() {
+    let person = Person;
+    person.greet(); // Outputs: Hello from the default greeting!
+}</code></pre></pre>
+<p>We can, of course, override this default behavior like so:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">trait Greet {
+</span><span class="boring">    fn greet(&amp;self) {
+</span><span class="boring">        println!("Hello from the default greeting!");
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">struct Person;
+</span>// --snip--
+
+impl Greet for Person {
+    fn greet(&amp;self) { // Overwrite the default implementation
+        println!("Hello from Person greeting!");
+    }
+}
+
+fn main() {
+    let person = Person;
+    person.greet();  // Outputs: Hello from Person greeting!
+}</code></pre></pre>
+<h3 id="traits-as-function-parameters-and-return-types"><a class="header" href="#traits-as-function-parameters-and-return-types">Traits as Function Parameters and Return Types</a></h3>
+<p>Once the Greet trait is defined, it can be used as a type for function
+parameters and return values:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let person = Person;
+    do_greet(person);
+
+    let returned = return_greet();
+    returned.greet();
+}
+
+fn do_greet(greetable: impl Greet) { // Accepts any type implementing Greet
+    greetable.greet();
+}
+
+fn return_greet() -&gt; impl Greet { // Returns some type implementing Greet
+    Person
+}
+
+// --snip--
+<span class="boring">struct Person;
+</span><span class="boring">
+</span><span class="boring">impl Greet for Person {}
+</span><span class="boring">
+</span><span class="boring">trait Greet {
+</span><span class="boring">    fn greet(&amp;self) {
+</span><span class="boring">        println!("Hello, greeting!");
+</span><span class="boring">    }
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>When reading more and more Rust code, we see that experienced Rust developers
+frequently use standard library traits. Rust provides common traits as both
+guidelines and best practices. This not only helps us learn Rust but also
+provide great references when programming in other languages.</p>
+<p>In the following section, let's have a look at the out-of-box common traits!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="common-traits"><a class="header" href="#common-traits">Common Traits</a></h1>
+<p>Let's briefly explore some standard library traits to understand their practical
+use.</p>
+<ul>
+<li>Clone</li>
+<li>Copy</li>
+<li>Display</li>
+<li>Debug</li>
+<li>Default</li>
+<li>Eq and PartialEq</li>
+<li>Ord and PartialOrd</li>
+<li>Iterator</li>
+<li>IntoIterator</li>
+<li>From/Into</li>
+</ul>
+<p>These traits enable a rich set of tools that work seamlessly across many types.
+Let’s look at a few examples to illustrate their usefulness.</p>
+<h2 id="debug"><a class="header" href="#debug">Debug</a></h2>
+<p>Sometimes, especially when troubleshooting, we want to quickly inspect the
+contents of a variable, such as the <code>origin</code> instance of <code>Point</code> below.</p>
+<pre><pre class="playground"><code class="language-rust does_not_compile">struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let origin = Point { x: 0, y: 0 };
+    println!("{:?}", origin); // not work
+}</code></pre></pre>
+<p>The <code>Debug</code> trait enables this by allowing types to be
+printed using the <code>{:?}</code> formatter in macros like <code>println!</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="ferris.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
