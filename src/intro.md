@@ -25,8 +25,8 @@ make it more accessible for you too.
 
 ## How to read
 
-I've organized related concpets together, but I'm not your dad - feel free to
-jump around and focus on whatever interests you most.
+I've organized related concpets together, but it shouldn't puzzle you much if
+you jump around and focus on whatever interests you most.
 
 I love reading with a dark color theme. You can change themes by clicking the
 paint brush icon (<i class="fa fa-paint-brush"></i>) in the top-left menu bar.
