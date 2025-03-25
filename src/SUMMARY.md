@@ -2,5 +2,5 @@
 
 - [Introduction](intro.md)
 - [Trait](trait.md)
-    - [Common traits](common-traits.md)
+    - [Common traits](trait-common-traits.md)
 
