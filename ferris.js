@@ -87,7 +87,7 @@ function prepareFerrisContainer(element, useButtons) {
  */
 function createFerris(type, size) {
   let a = document.createElement("a");
-  a.setAttribute("href", "ch00-00-introduction.html#ferris");
+  a.setAttribute("href", "intro.html#ferris");
   a.setAttribute("target", "_blank");
 
   let img = document.createElement("img");

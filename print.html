@@ -33,10 +33,11 @@
         <link rel="stylesheet" href="ferris.css">
 
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -160,21 +163,6 @@
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>Hi there, I'm <a href="http://xixiao.info">Xi Xiao</a>. This is my journey learning
 <a href="https://www.rust-lang.org/">Rust</a>.</p>
-<p>I created this book for three reasons.</p>
-<p>First, I want to become a better writer. Books, like <a href="https://www.amazon.com/Flowers-Algernon-Daniel-Keyes/dp/015603008X">Flowers for Algernon</a>
-and <a href="https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592">The Phoenix Project</a> amazed me. They explain complex ideas through
-simple words that still hit hard. They prove we don't need fancy language to
-convey thoughts.</p>
-<p>This skill seems magical to me! We often hear that things must be complex to be
-powerful. But these books are both simple AND powerful. I'm writing this book to
-practice this rare combination.</p>
-<p>Second, I love Rust. The language gives you modern features like type inference
-and safe concurrency that make coding pleasant. But it also offers the low-level
-control needed for system programming. Powerful yet approachable - just like the
-writing style I admire.</p>
-<p>Third, Rust isn't like other languages I've learned. It's complex enough to be
-worth breaking down into bite-sized pieces. By sharing my journey, I hope to
-make it more accessible for you too.</p>
 <h2 id="how-to-read"><a class="header" href="#how-to-read">How to read</a></h2>
 <p>I've organized related concpets together, but it shouldn't puzzle you much if
 you jump around and focus on whatever interests you most.</p>
@@ -223,8 +211,6 @@ context:</p>
 <tr><td><img src="img/ferris/not_desired_behavior.svg" class="ferris-explain" alt="Ferris with one claw up, shrugging"/></td><td>This code does not produce the desired behavior.</td></tr>
 </tbody></table>
 </div>
-<p>In most situations, we’ll lead you to the correct version of any code that
-doesn’t compile.</p>
 <h2 id="source-code"><a class="header" href="#source-code">Source Code</a></h2>
 <p>The source files from which this book is generated can be found on
 <a href="https://github.com/xixiaofinland/rust_beyond">GitHub</a>.</p>
