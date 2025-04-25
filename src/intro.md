@@ -3,26 +3,6 @@
 Hi there, I'm [Xi Xiao](http://xixiao.info). This is my journey learning
 [Rust][r].
 
-I created this book for three reasons.
-
-First, I want to become a better writer. Books, like [Flowers for Algernon][ffa]
-and [The Phoenix Project][tpp] amazed me. They explain complex ideas through
-simple words that still hit hard. They prove we don't need fancy language to
-convey thoughts.
-
-This skill seems magical to me! We often hear that things must be complex to be
-powerful. But these books are both simple AND powerful. I'm writing this book to
-practice this rare combination.
-
-Second, I love Rust. The language gives you modern features like type inference
-and safe concurrency that make coding pleasant. But it also offers the low-level
-control needed for system programming. Powerful yet approachable - just like the
-writing style I admire.
-
-Third, Rust isn't like other languages I've learned. It's complex enough to be
-worth breaking down into bite-sized pieces. By sharing my journey, I hope to
-make it more accessible for you too.
-
 ## How to read
 
 I've organized related concpets together, but it shouldn't puzzle you much if
@@ -96,5 +76,3 @@ The source files from which this book is generated can be found on
 That said, let's get on with it!
 
 [r]: https://www.rust-lang.org/
-[ffa]: https://www.amazon.com/Flowers-Algernon-Daniel-Keyes/dp/015603008X
-[tpp]: https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592
